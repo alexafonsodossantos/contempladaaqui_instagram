@@ -6,4 +6,4 @@ psd.composite().save('example.png')
 for layer in psd:
     print(layer)
     layer_image = layer.composite()
-    layer_image.save('psdexport_results/%s.png' % layer.name)
+    layer_image.save('%s.png' % layer.name)
