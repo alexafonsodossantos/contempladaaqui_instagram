@@ -1,19 +1,20 @@
-from PIL import Image, ImageOps
+from PIL import Image
 
 background = Image.open("Plano de Fundo.png")
-b_w, b_h = background.size
+foreground = Image.open("Forma 3.png")
 
 
-carro = Image.open("carro.jpg")
-carro = ImageOps.fit(carro, (b_w,b_h-250))
-carro.convert('RGBA')
-f_w, f_h = carro.size
-background.paste(carro, (0,0))
+background.paste(foreground, (-5,580), foreground)
+
 
 foreground = Image.open("Forma 1.png")
-foreground.convert('RGBA')
+b_width, b_height = background.size
+f_width, f_height = foreground.size
+f_pos_y = b_height - f_height
 
-background.paste(foreground, (-5, 625), foreground)
-background.show()
-rgb_im = background.convert('RGB')
-rgb_im.save('audacious.jpg')
+
+
+background.paste(foreground, (-5, f_pos_y+5), foreground)
+
+
+background.save("Overlay.png")
